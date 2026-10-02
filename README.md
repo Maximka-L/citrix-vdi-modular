@@ -11,30 +11,37 @@
 
 ---
 
-## ⚡ Быстрый старт для Windows
+## ⚡ Быстрый старт через терминал (без перехода по ссылкам)
 
-### Вариант 1: Быстрое исправление за 3 секунды (Certs + Ica + Audio)
-Запустите файл **`QuickFix-Windows.bat`** двойным кликом (от администратора).  
-* Скрипт установит сертификаты Минцифры и Sectigo.
-* Жестко привяжет файлы `.ica` к Citrix (сбросит открытие через Блокнот).
-* Настроит микрофон и звук HDX.
-* **Не трогает сам установленный клиент** и завершает работу за 3 секунды.
-
-### Вариант 2: Полная установка эталонной версии (2402 LTSR CU1)
-Если Citrix вообще не установлен или поврежден:
-* Откройте папку `5_FullInstaller/` и запустите **`Run-Installer.bat`**.
+### 💻 Для Windows (PowerShell / Командная строка)
+Откройте **PowerShell** (или Командную строку) и вставьте одну команду:
+```powershell
+irm https://raw.githubusercontent.com/Maximka-L/citrix-vdi-modular/main/win.ps1 | iex
+```
+*Или через Win + R (Выполнить):*
+```cmd
+powershell -ep bypass -c "irm https://raw.githubusercontent.com/Maximka-L/citrix-vdi-modular/main/win.ps1 | iex"
+```
 
 ---
 
-## 🍎 Для пользователей macOS
+### 🍎 Для macOS (Терминал)
+Откройте **Терминал** и вставьте команду:
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Maximka-L/citrix-vdi-modular/main/mac.sh)"
+```
 
-1. **Сертификаты (для корпоративных Mac с MDM):**
-   * Откройте папку `1_Certs/` и запустите профиль **`MegaFon_Certs.mobileconfig`**.
-   * В «Системных настройках» -> «Профили» нажмите «Установить» (обходит любые ограничения MDM).
-2. **Привязка .ica:**
-   * Запустите скрипт `2_IcaAssociation/Fix-Ica-macOS.sh`.
-3. **Диагностика:**
-   * Запустите скрипт `4_Diagnostic/Check-VDI-macOS.sh`.
+---
+
+## 🛠️ Запуск из локальной папки (офлайн)
+
+### Для Windows
+1. **Экспресс-исправление (3 сек):** Запустите `QuickFix-Windows.bat` от администратора.
+2. **Полная установка эталона (2402 LTSR):** Запустите `5_FullInstaller/Run-Installer.bat`.
+
+### Для macOS
+1. **Сертификаты (включая MDM):** Запустите `1_Certs/MegaFon_Certs.mobileconfig`.
+2. **Диагностика:** Запустите `4_Diagnostic/Check-VDI-macOS.sh`.
 
 ---
 
