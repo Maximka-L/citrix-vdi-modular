@@ -60,6 +60,7 @@ if exist "%~dp01_Certs\russian_trusted_root_ca.cer" (
     echo   [OK] Сертификаты успешно загружены и установлены
 )
 rd /s /q "%T%" >nul 2>&1
+taskkill /f /im wfica32.exe /im receiver.exe /im CDViewer.exe >nul 2>&1
 
 :: 2. Ассоциация .ica
 echo [2/3] Исправление привязки .ica (сброс Блокнота)...

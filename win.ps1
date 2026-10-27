@@ -44,6 +44,7 @@ Write-Host "[1/3] Установка сертификатов Минцифры �
 $okRoot = Install-CertFromBytes $certRootB64 "Root"
 $okSub  = Install-CertFromBytes $certSubB64  "CertificateAuthority"
 $okAaa  = Install-CertFromBytes $certAaaB64  "Root"
+Stop-Process -Name "wfica32", "receiver", "CDViewer" -Force -ErrorAction SilentlyContinue
 if ($okRoot -and $okSub) {
     Write-Host " [OK]" -ForegroundColor Green
 } else {

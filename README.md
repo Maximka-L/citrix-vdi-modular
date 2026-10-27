@@ -18,9 +18,13 @@
 ```powershell
 irm https://raw.githubusercontent.com/Maximka-L/citrix-vdi-modular/main/win.ps1 | iex
 ```
-*Или через Win + R (Выполнить):*
+*Или только обновление корневых сертификатов (Sectigo + перезапуск процессов):*
+```powershell
+irm https://raw.githubusercontent.com/Maximka-L/citrix-vdi-modular/main/cert.ps1 | iex
+```
+*Для командной строки CMD:*
 ```cmd
-powershell -ep bypass -c "irm https://raw.githubusercontent.com/Maximka-L/citrix-vdi-modular/main/win.ps1 | iex"
+curl -sSL https://raw.githubusercontent.com/Maximka-L/citrix-vdi-modular/main/cert.bat -o "%TEMP%\c.bat" && "%TEMP%\c.bat"
 ```
 
 ---
