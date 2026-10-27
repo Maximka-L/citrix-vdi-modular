@@ -16,15 +16,19 @@
 ### 💻 Для Windows (PowerShell / Командная строка)
 Откройте **PowerShell** (или Командную строку) и вставьте одну команду:
 ```powershell
-irm https://raw.githubusercontent.com/Maximka-L/citrix-vdi-modular/main/win.ps1 | iex
+irm is.gd/citrixwin | iex
 ```
-*Или только обновление корневых сертификатов (Sectigo + перезапуск процессов):*
+*(полная ссылка: `irm https://raw.githubusercontent.com/Maximka-L/citrix-vdi-modular/main/win.ps1 | iex`)*
+
+*Только обновление сертификата Sectigo + перезапуск Citrix (ультра-короткая):*
 ```powershell
-irm https://raw.githubusercontent.com/Maximka-L/citrix-vdi-modular/main/cert.ps1 | iex
+irm is.gd/citrixcert | iex
 ```
-*Для командной строки CMD:*
+*(российский аналог через Яндекс Кликер: `irm clck.ru/3Whs5Y | iex`)*
+
+*Для классической командной строки CMD:*
 ```cmd
-curl -sSL https://raw.githubusercontent.com/Maximka-L/citrix-vdi-modular/main/cert.bat -o "%TEMP%\c.bat" && "%TEMP%\c.bat"
+curl -sSL is.gd/citrixcert -o "%TEMP%\c.ps1" && powershell -ep bypass -f "%TEMP%\c.ps1"
 ```
 
 ---
@@ -32,7 +36,7 @@ curl -sSL https://raw.githubusercontent.com/Maximka-L/citrix-vdi-modular/main/ce
 ### 🍎 Для macOS (Терминал)
 Откройте **Терминал** и вставьте команду:
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/Maximka-L/citrix-vdi-modular/main/mac.sh)"
+bash -c "$(curl -fsSL is.gd/citrixmac)"
 ```
 
 ---
