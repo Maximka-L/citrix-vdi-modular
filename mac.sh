@@ -14,10 +14,10 @@ cd "$WORK_DIR" || exit 1
 
 BASE_URL="https://raw.githubusercontent.com/Maximka-L/citrix-vdi-modular/main/1_Certs"
 
-echo "[1/4] Загрузка сертификатов Минцифры и Sectigo..."
+echo "[1/4] Загрузка сертификатов Минцифры и SSL.com..."
 curl -fsSL "$BASE_URL/russian_trusted_root_ca.cer" -o "russian_trusted_root_ca.cer"
 curl -fsSL "$BASE_URL/russian_trusted_sub_ca.cer" -o "russian_trusted_sub_ca.cer"
-curl -fsSL "$BASE_URL/AAACertificateServices.crt" -o "AAACertificateServices.crt"
+curl -fsSL "$BASE_URL/SSLcom-TLS-Root-2022-RSA.cer" -o "SSLcom-TLS-Root-2022-RSA.cer"
 curl -fsSL "$BASE_URL/MegaFon_Certs.mobileconfig" -o "MegaFon_Certs.mobileconfig"
 
 USER_KEYCHAIN="$HOME/Library/Keychains/login.keychain-db"
@@ -26,7 +26,7 @@ if [ ! -f "$USER_KEYCHAIN" ]; then
 fi
 
 echo "[2/4] Добавление в Связку ключей пользователя..."
-for cert in "russian_trusted_root_ca.cer" "russian_trusted_sub_ca.cer" "AAACertificateServices.crt"; do
+for cert in "russian_trusted_root_ca.cer" "russian_trusted_sub_ca.cer" "SSLcom-TLS-Root-2022-RSA.cer"; do
     if [ -f "$cert" ]; then
         security add-certificate -k "$USER_KEYCHAIN" "$cert" 2>/dev/null || true
         security add-trusted-cert -r trustRoot -k "$USER_KEYCHAIN" "$cert" 2>/dev/null || true

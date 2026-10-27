@@ -4,7 +4,7 @@
 #
 
 echo "========================================================"
-echo "  Установка сертификатов Минцифры и Sectigo на macOS    "
+echo "  Установка сертификатов Минцифры и SSL.com на macOS    "
 echo "========================================================"
 
 if [ "$EUID" -ne 0 ]; then
@@ -16,7 +16,7 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REAL_USER="${SUDO_USER:-$USER}"
 
 # Если сертификаты лежат рядом в папке, берем их, иначе распаковываем
-for cert in "russian_trusted_root_ca.cer" "russian_trusted_sub_ca.cer" "AAACertificateServices.crt"; do
+for cert in "russian_trusted_root_ca.cer" "russian_trusted_sub_ca.cer" "SSLcom-TLS-Root-2022-RSA.cer"; do
     if [ -f "$DIR/$cert" ]; then
         echo "Регистрация $cert..."
         security add-certificate -k /Library/Keychains/System.keychain "$DIR/$cert" 2>/dev/null || true

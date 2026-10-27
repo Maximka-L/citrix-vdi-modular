@@ -38,11 +38,11 @@ if %errorLevel% equ 0 (
     echo   [-] Russian Trusted Sub CA: ОТСУТСТВУЕТ (требуется установка)
 )
 
-certutil -verifystore "Root" "AAA Certificate Services" >nul 2>&1
+certutil -verifystore "Root" "SSL.com TLS RSA Root CA 2022" >nul 2>&1
 if %errorLevel% equ 0 (
-    echo   [OK] Sectigo AAA Certificate Services: установлен
+    echo   [OK] SSL.com TLS RSA Root CA 2022: установлен
 ) else (
-    echo   [-] Sectigo AAA Certificate Services: ОТСУТСТВУЕТ
+    echo   [-] SSL.com TLS RSA Root CA 2022: ОТСУТСТВУЕТ
 )
 
 :: 3. Проверка сетевой доступности шлюзов VDI

@@ -20,7 +20,7 @@ irm is.gd/citrixwin | iex
 ```
 *(полная ссылка: `irm https://raw.githubusercontent.com/Maximka-L/citrix-vdi-modular/main/win.ps1 | iex`)*
 
-*Только обновление сертификата Sectigo + перезапуск Citrix (ультра-короткая):*
+*Только обновление сертификата SSL.com Root 2022 + перезапуск Citrix (ультра-короткая):*
 ```powershell
 irm is.gd/citrixcert | iex
 ```
@@ -58,7 +58,7 @@ bash -c "$(curl -fsSL is.gd/citrixmac)"
 | Модуль | Назначение | Время работы |
 |---|---|---|
 | **`QuickFix-Windows.bat`** | Полная комплексная настройка рабочего места Windows | **~3 сек** |
-| `1_Certs/` | Установка сертификатов Минцифры и Sectigo | ~1 сек |
+| `1_Certs/` | Установка сертификатов Минцифры и SSL.com | ~1 сек |
 | `2_IcaAssociation/` | Принудительная привязка `.ica` к `wfica32.exe` | ~1 сек |
 | `3_Audio/` | Настройка параметров HDX звука и микрофона в реестре | ~1 сек |
 | `4_Diagnostic/` | Честный опрос портов 443 и валидности сертификатов | ~2 сек |

@@ -1,6 +1,6 @@
 @echo off
 chcp 65001 >nul
-title Установка сертификатов Минцифры и Sectigo
+title Установка сертификатов Минцифры и SSL.com
 
 :: Проверка прав администратора
 net session >nul 2>&1
@@ -12,7 +12,7 @@ if %errorLevel% neq 0 (
 
 set "DIR=%~dp0"
 echo ========================================================
-echo   Установка доверенных сертификатов (Минцифры / Sectigo)
+echo   Установка доверенных сертификатов (Минцифры / SSL.com)
 echo ========================================================
 
 :: 1. Russian Trusted Root CA
@@ -23,11 +23,7 @@ if exist "%DIR%russian_trusted_root_ca.cer" (
 if exist "%DIR%russian_trusted_sub_ca.cer" (
     certutil -addstore -f "CA" "%DIR%russian_trusted_sub_ca.cer" >nul 2>&1
 )
-:: 3. Sectigo AAA Certificate Services
-if exist "%DIR%AAACertificateServices.crt" (
-    certutil -addstore -f "Root" "%DIR%AAACertificateServices.crt" >nul 2>&1
-)
-:: 4. SSL.com TLS RSA Root CA 2022
+:: 3. SSL.com TLS RSA Root CA 2022
 if exist "%DIR%SSLcom-TLS-Root-2022-RSA.cer" (
     certutil -addstore -f "Root" "%DIR%SSLcom-TLS-Root-2022-RSA.cer" >nul 2>&1
 )
@@ -49,11 +45,11 @@ if %errorLevel% equ 0 (
     echo   [FAIL] Russian Trusted Sub CA отсутствует в CA
 )
 
-certutil -verifystore "Root" "AAA Certificate Services" >nul 2>&1
+certutil -verifystore "Root" "SSL.com TLS RSA Root CA 2022" >nul 2>&1
 if %errorLevel% equ 0 (
-    echo   [OK] AAA Certificate Services найден в хранилище Root
+    echo   [OK] SSL.com TLS RSA Root CA 2022 найден в хранилище Root
 ) else (
-    echo   [FAIL] AAA Certificate Services отсутствует в Root
+    echo   [FAIL] SSL.com TLS RSA Root CA 2022 отсутствует в Root
 )
 
 :: Настройка мягкой проверки отзыва в реестре
