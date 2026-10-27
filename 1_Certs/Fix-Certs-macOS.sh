@@ -16,7 +16,7 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REAL_USER="${SUDO_USER:-$USER}"
 
 # Если сертификаты лежат рядом в папке, берем их, иначе распаковываем
-for cert in "russian_trusted_root_ca.cer" "russian_trusted_sub_ca.cer" "SSLcom-TLS-Root-2022-RSA.cer"; do
+for cert in "russian_trusted_root_ca.cer" "russian_trusted_sub_ca.cer" "SSLcom-TLS-Root-2022-RSA.cer" "SSLcom-TLS-Issuing-RSA-CA-R1.cer"; do
     if [ -f "$DIR/$cert" ]; then
         echo "Регистрация $cert..."
         security add-certificate -k /Library/Keychains/System.keychain "$DIR/$cert" 2>/dev/null || true

@@ -45,6 +45,13 @@ if %errorLevel% equ 0 (
     echo   [-] SSL.com TLS RSA Root CA 2022: ОТСУТСТВУЕТ
 )
 
+certutil -verifystore "CA" "SSL.com TLS Issuing RSA CA R1" >nul 2>&1
+if %errorLevel% equ 0 (
+    echo   [OK] SSL.com TLS Issuing RSA CA R1: установлен
+) else (
+    echo   [-] SSL.com TLS Issuing RSA CA R1: ОТСУТСТВУЕТ (требуется установка)
+)
+
 :: 3. Проверка сетевой доступности шлюзов VDI
 echo.
 echo [3/3] Проверка сетевых портов МегаФон VDI (порт 443)...

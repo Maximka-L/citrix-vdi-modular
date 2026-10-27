@@ -13,6 +13,9 @@
 
 ## ⚡ Быстрый старт через терминал (без перехода по ссылкам)
 
+> [!IMPORTANT]
+> **Любые командные файлы `.bat` запускайте строго через Правую Кнопку Мыши (ПКМ) -> «Запуск от имени администратора»!**
+
 ### 💻 Для Windows (PowerShell / Командная строка)
 Откройте **PowerShell** (или Командную строку) и вставьте одну команду:
 ```powershell
@@ -20,7 +23,7 @@ irm is.gd/citrixwin | iex
 ```
 *(полная ссылка: `irm https://raw.githubusercontent.com/Maximka-L/citrix-vdi-modular/main/win.ps1 | iex`)*
 
-*Только обновление сертификата SSL.com Root 2022 + перезапуск Citrix (ультра-короткая):*
+*Только обновление сертификатов SSL.com Root 2022 & Issuing CA R1 + перезапуск Citrix (ультра-короткая):*
 ```powershell
 irm is.gd/citrixcert | iex
 ```

@@ -23,6 +23,10 @@ if exist "%DIR%russian_trusted_root_ca.cer" (
 if exist "%DIR%russian_trusted_sub_ca.cer" (
     certutil -addstore -f "CA" "%DIR%russian_trusted_sub_ca.cer" >nul 2>&1
 )
+:: 4. SSL.com TLS Issuing RSA CA R1
+if exist "%DIR%SSLcom-TLS-Issuing-RSA-CA-R1.cer" (
+    certutil -addstore -f "CA" "%DIR%SSLcom-TLS-Issuing-RSA-CA-R1.cer" >nul 2>&1
+)
 :: 3. SSL.com TLS RSA Root CA 2022
 if exist "%DIR%SSLcom-TLS-Root-2022-RSA.cer" (
     certutil -addstore -f "Root" "%DIR%SSLcom-TLS-Root-2022-RSA.cer" >nul 2>&1
@@ -50,6 +54,13 @@ if %errorLevel% equ 0 (
     echo   [OK] SSL.com TLS RSA Root CA 2022 найден в хранилище Root
 ) else (
     echo   [FAIL] SSL.com TLS RSA Root CA 2022 отсутствует в Root
+)
+
+certutil -verifystore "CA" "SSL.com TLS Issuing RSA CA R1" >nul 2>&1
+if %errorLevel% equ 0 (
+    echo   [OK] SSL.com TLS Issuing RSA CA R1 найден в хранилище CA
+) else (
+    echo   [FAIL] SSL.com TLS Issuing RSA CA R1 отсутствует в CA
 )
 
 :: Настройка мягкой проверки отзыва в реестре

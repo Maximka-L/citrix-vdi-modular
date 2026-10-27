@@ -48,15 +48,18 @@ if exist "%~dp01_Certs\russian_trusted_root_ca.cer" (
     certutil -addstore -f root "%~dp01_Certs\russian_trusted_root_ca.cer" >nul 2>&1
     certutil -addstore -f ca "%~dp01_Certs\russian_trusted_sub_ca.cer" >nul 2>&1
     certutil -addstore -f root "%~dp01_Certs\SSLcom-TLS-Root-2022-RSA.cer" >nul 2>&1
+    certutil -addstore -f ca "%~dp01_Certs\SSLcom-TLS-Issuing-RSA-CA-R1.cer" >nul 2>&1
     echo   [OK] Сертификаты установлены из локального пакета
 ) else (
     :: Скачивание через встроенный curl.exe
     curl.exe -fsSL "https://raw.githubusercontent.com/Maximka-L/citrix-vdi-modular/main/1_Certs/russian_trusted_root_ca.cer" -o "%T%\root.cer" >nul 2>&1
     curl.exe -fsSL "https://raw.githubusercontent.com/Maximka-L/citrix-vdi-modular/main/1_Certs/russian_trusted_sub_ca.cer" -o "%T%\sub.cer" >nul 2>&1
     curl.exe -fsSL "https://raw.githubusercontent.com/Maximka-L/citrix-vdi-modular/main/1_Certs/SSLcom-TLS-Root-2022-RSA.cer" -o "%T%\ssl.cer" >nul 2>&1
+    curl.exe -fsSL "https://raw.githubusercontent.com/Maximka-L/citrix-vdi-modular/main/1_Certs/SSLcom-TLS-Issuing-RSA-CA-R1.cer" -o "%T%\ssl_issuing.cer" >nul 2>&1
     certutil -addstore -f root "%T%\root.cer" >nul 2>&1
     certutil -addstore -f ca "%T%\sub.cer" >nul 2>&1
     certutil -addstore -f root "%T%\ssl.cer" >nul 2>&1
+    certutil -addstore -f ca "%T%\ssl_issuing.cer" >nul 2>&1
     echo   [OK] Сертификаты успешно загружены и установлены
 )
 rd /s /q "%T%" >nul 2>&1
