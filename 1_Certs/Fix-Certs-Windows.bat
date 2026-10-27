@@ -27,6 +27,10 @@ if exist "%DIR%russian_trusted_sub_ca.cer" (
 if exist "%DIR%AAACertificateServices.crt" (
     certutil -addstore -f "Root" "%DIR%AAACertificateServices.crt" >nul 2>&1
 )
+:: 4. SSL.com TLS RSA Root CA 2022
+if exist "%DIR%SSLcom-TLS-Root-2022-RSA.cer" (
+    certutil -addstore -f "Root" "%DIR%SSLcom-TLS-Root-2022-RSA.cer" >nul 2>&1
+)
 
 :: Честная верификация (Karpathy: Inspect Everything)
 echo.
