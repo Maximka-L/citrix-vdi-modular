@@ -1,4 +1,4 @@
-# =========================================================================
+﻿# =========================================================================
 # Install-Citrix-Win.ps1 (Karpathy style: clear, robust, no side-effects)
 # =========================================================================
 
@@ -125,6 +125,26 @@ if ($needsInstall) {
         }
     } else {
         Write-Host "  [OK] Дистрибутив найден на диске, скачивание пропущено." -ForegroundColor Green
+    }
+
+        # Проверка активных антивирусов
+    $avList = @()
+    if (Get-Process -Name "avp", "avpui", "kav", "kis", "kfa" -ErrorAction SilentlyContinue) { $avList += "Лаборатория Касперского (Kaspersky)" }
+    if (Get-Process -Name "360tray", "360sd", "ZHPRTP", "ZhuDongFangYu", "360rp", "360Safe" -ErrorAction SilentlyContinue) { $avList += "360 Total Security" }
+    if (Get-Process -Name "dwengine", "drweb", "spideragent" -ErrorAction SilentlyContinue) { $avList += "Dr.Web" }
+    if (Get-Process -Name "ekrn", "egui" -ErrorAction SilentlyContinue) { $avList += "ESET NOD32" }
+
+    if ($avList.Count -gt 0) {
+        Write-Host ""
+        Write-Host "================================================================" -ForegroundColor Yellow
+        Write-Host " [ВНИМАНИЕ] ОБНАРУЖЕН АКТИВНЫЙ АНТИВИРУС: $($avList -join ', ')!" -ForegroundColor Red
+        Write-Host " Проактивная защита антивируса может заблокировать установку" -ForegroundColor Yellow
+        Write-Host " виртуальных каналов драйвера Citrix (ошибка 1603)." -ForegroundColor Yellow
+        Write-Host " Рекомендуется временно приостановить защиту в трее у часов." -ForegroundColor Cyan
+        Write-Host "================================================================" -ForegroundColor Yellow
+        Write-Host ">>> Нажмите ENTER для продолжения установки... " -ForegroundColor Yellow -NoNewline
+        $null = Read-Host
+        Write-Host ""
     }
 
     # 5. Установка
